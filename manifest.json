@@ -1,0 +1,107 @@
+{
+  "name": "broadcast",
+  "version": "0.1.0",
+  "apiVersion": 2,
+  "permissions": [
+    "db",
+    "proactive"
+  ],
+  "depends": {},
+  "conflicts": [],
+  "commands": [
+    {
+      "name": "列表",
+      "scenes": [
+        "c2c"
+      ],
+      "permission": "bot_admin",
+      "description": "查看或创建/覆盖群列表",
+      "usage": "/列表 [列表名] [群会话id(逗号隔开)]"
+    },
+    {
+      "name": "群发",
+      "scenes": [
+        "c2c"
+      ],
+      "permission": "bot_admin",
+      "description": "立即向群聊推送消息",
+      "usage": "/群发 <内容> [群id逗号隔开 | 列表名 | @all]"
+    },
+    {
+      "name": "定时",
+      "scenes": [
+        "c2c"
+      ],
+      "permission": "bot_admin",
+      "description": "创建定时发送（北京时间）",
+      "usage": "/定时 <月:日:时:分> <内容> [群id逗号隔开 | 列表名 | @all]"
+    },
+    {
+      "name": "查定时",
+      "scenes": [
+        "c2c"
+      ],
+      "permission": "bot_admin",
+      "description": "查看所有定时任务",
+      "usage": "/查定时"
+    },
+    {
+      "name": "删定时",
+      "scenes": [
+        "c2c"
+      ],
+      "permission": "bot_admin",
+      "description": "删除定时任务",
+      "usage": "/删定时 <任务id>"
+    },
+    {
+      "name": "删列表",
+      "scenes": [
+        "c2c"
+      ],
+      "permission": "bot_admin",
+      "description": "删除一个群列表",
+      "usage": "/删列表 <列表名>"
+    }
+  ],
+  "regex": [],
+  "events": [],
+  "buttons": [],
+  "cron": [
+    {
+      "name": "tick",
+      "cron": "* * * * *"
+    }
+  ],
+  "routes": [],
+  "hasMiddleware": false,
+  "services": [],
+  "durableObjects": [],
+  "displayName": "群发助手",
+  "description": "群发与定时发送：管理群列表、/群发 立即推送、/定时 一次性定时推送",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "intervalMs": {
+        "type": "integer",
+        "title": "发送间隔（毫秒）",
+        "description": "每个目标群之间的发送间隔，避免瞬间刷爆主动消息额度。默认 500，0 表示不停顿。",
+        "default": 500,
+        "minimum": 0,
+        "maximum": 5000
+      },
+      "maxPerSend": {
+        "type": "integer",
+        "title": "单次最多发送群数",
+        "description": "一条 /群发 或一次定时最多推送的群数。受 30 秒与 50 子请求限制，默认 50；0 表示不限制。",
+        "default": 50,
+        "minimum": 0,
+        "maximum": 100
+      }
+    }
+  },
+  "defaultConfig": {
+    "intervalMs": 500,
+    "maxPerSend": 50
+  }
+}

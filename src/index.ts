@@ -201,6 +201,8 @@ async function runSend(ctx: PluginContext<Config>, targets: string[], content: s
 
 export default definePlugin<Config>({
   name: 'broadcast',
+  // 用了 ctx.db.batch()（契约版本 2 的能力），声明最低要求为 2；未用 v3 的任何能力
+  apiVersion: 2,
   displayName: '群发助手',
   description: '群发与定时发送：管理群列表、/群发 立即推送、/定时 一次性定时推送',
   permissions: ['db', 'proactive'],
@@ -341,7 +343,7 @@ export default definePlugin<Config>({
     定时: {
       scenes: ['c2c'],
       permission: 'bot_admin',
-      description: '创建一次性定时发送（北京时间 月:日:时:分）',
+      description: '创建定时发送（北京时间）',
       usage: '/定时 <月:日:时:分> <内容> [群id逗号隔开 | 列表名 | @all]',
       async handler({ ctx, argText, session }) {
         // 时间串紧跟命令，之后是「内容 + 群参数」
