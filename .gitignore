@@ -1,0 +1,9 @@
+node_modules/
+dist/
+*.log
+
+# 本地参考用的 QFlareBot 官方文档（非插件源码，不提交）
+docs/
+
+# 仅本地查看的 push 指南，不提交到仓库
+PUSH_GUIDE.md

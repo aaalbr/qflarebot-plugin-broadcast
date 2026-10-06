@@ -1,0 +1,22 @@
+{
+  "name": "qflarebot-plugin-broadcast",
+  "version": "0.1.0",
+  "description": "群发与定时发送插件：列表管理、/群发 立即推送、/定时 一次性定时推送",
+  "license": "MIT",
+  "type": "module",
+  "keywords": [
+    "qflarebot-plugin"
+  ],
+  "scripts": {
+    "build": "qqbot-plugin build",
+    "sync": "qqbot-plugin build && node -e \"require('node:fs').copyFileSync('dist/manifest.json','manifest.json')\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250917.0",
+    "@qqbot/plugin-cli": "file:../QFlareBot/packages/plugin-cli",
+    "@qqbot/sdk": "file:../QFlareBot/packages/sdk",
+    "typescript": "^5.9.0",
+    "vitest": "^3.2.0"
+  }
+}
