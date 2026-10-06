@@ -7,3 +7,6 @@ docs/
 
 # 仅本地查看的 push 指南，不提交到仓库
 PUSH_GUIDE.md
+
+# 插件市场登记文件（要单独提交到 QFlareBot/plugins 仓库，不进本仓库）
+market/
